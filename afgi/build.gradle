@@ -77,8 +77,8 @@ afterEvaluate {
             release(MavenPublication) {
                 from components.release
                 groupId = 'com.github.commonvideo'
-                artifactId = 'afgi'
-                version = 'livecallrandomcall-0.0.4'
+                artifactId = 'vcads'
+                version = '1'
             }
         }
     }
