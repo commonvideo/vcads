@@ -13,9 +13,12 @@
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-3940256099942544~3347511713"/>
 
+
         <meta-data
             android:name="applovin.sdk.key"
-            android:value="X31zJW8ROfKyir7K9V5m1n5oUwP8DDKJcyNJBOhUGpbA0H_lGigrAKLmgcQKLWvlocuGV0n3Xpqc4OUzqETGFH" />
+            android:value="X31zJW8ROfKyir7K9V5m1n5oUwP8DDKJcyNJBOhUGpbA0H_lGigrAKLmgcQKLWvlocuGV0n3Xpqc4OUzqETR0s" />
+
+        <!--X31zJW8ROfKyir7K9V5m1n5oUwP8DDKJcyNJBOhUGpbA0H_lGigrAKLmgcQKLWvlocuGV0n3Xpqc4OUzqETGFH-->
         <activity
             android:name="com.ironsource.sdk.controller.ControllerActivity"
             android:configChanges="orientation|screenSize"
