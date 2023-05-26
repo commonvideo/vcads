@@ -18,6 +18,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.json.JSONObject
+import java.util.*
 
 var LOADED_AD = "loaded"
 
@@ -38,8 +39,8 @@ fun Context.initialize() {
     AudienceNetworkAds.initialize(this)
     AppLovinSdk.getInstance(this).mediationProvider = "max"
     AppLovinSdk.getInstance(this).initializeSdk {}
-
-
+    AppLovinSdk.getInstance(this).settings.testDeviceAdvertisingIds =
+        Arrays.asList<String>("Od20e1c4-a586-4403-bec9-b5a4b6f83a92")
 }
 fun Context.initInMobi(str:String){
     val params = JSONObject()
