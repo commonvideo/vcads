@@ -45,13 +45,15 @@ fun Context.initInMobi(str:String){
     val params = JSONObject()
     params.put("gdpr", "0")
 
-    InMobiSdk.init(this, str, params, SdkInitializationListener() {
-        @Override
-        fun onInitializationComplete(error: Error?) {
-            if (null != error) {
-                Log.e(ContentValues.TAG, "InMobi Init failed -" + error.message)
-            } else {
-                Log.d(ContentValues.TAG, "InMobi Init Successful")
+    InMobiSdk.init(this, str, params, object : SdkInitializationListener {
+        override fun onInitializationComplete(error: java.lang.Error?) {
+            @Override
+            fun onInitializationComplete(error: Error?) {
+                if (null != error) {
+                    Log.e(ContentValues.TAG, "InMobi Init failed -" + error.message)
+                } else {
+                    Log.d(ContentValues.TAG, "InMobi Init Successful")
+                }
             }
         }
     })

@@ -79,7 +79,7 @@ fun Activity.requestBannerInMobi(
 
         override fun onAdLoadFailed(p0: InMobiBanner, p1: InMobiAdRequestStatus) {
             super.onAdLoadFailed(p0, p1)
-            listener.invoke(null, p1.message)
+            listener.invoke(null, p1.message ?:"")
         }
     })
 
