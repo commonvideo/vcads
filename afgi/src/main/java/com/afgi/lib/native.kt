@@ -277,29 +277,98 @@ fun Activity.inflateAd(
 }
 
 
+/**
+ *
+ *
+ *  FrameLayout nativeAdContainer = findViewById( R.id.native_ad_layout );
+
+nativeAdLoader = new MaxNativeAdLoader( "YOUR_AD_UNIT_ID", this );
+nativeAdLoader.setNativeAdListener( new MaxNativeAdListener()
+{
+@Override
+public void onNativeAdLoaded(final MaxNativeAdView nativeAdView, final MaxAd ad)
+{
+// Clean up any pre-existing native ad to prevent memory leaks.
+if ( nativeAd != null )
+{
+nativeAdLoader.destroy( nativeAd );
+}
+
+// Save ad for cleanup.
+nativeAd = ad;
+
+// Add ad view to view.
+nativeAdContainer.removeAllViews();
+nativeAdContainer.addView( nativeAdView );
+}
+
+@Override
+public void onNativeAdLoadFailed(final String adUnitId, final MaxError error)
+{
+// We recommend retrying with exponentially higher delays up to a maximum delay
+}
+
+@Override
+public void onNativeAdClicked(final MaxAd ad)
+{
+// Optional click callback
+}
+} );
+
+nativeAdLoader.loadAd();
+ *
+ *
+ * */
+
 fun Activity.requestNativeApplovin(
     id: String,
     callBack: (layout: LinearLayout?, status: String) -> Unit
 ) {
     val nativeAdLoader = MaxNativeAdLoader(id, this)
-    var loadedNativeAd: MaxAd? = null
+    var nativeAd: MaxAd? = null
     nativeAdLoader.setNativeAdListener(object : MaxNativeAdListener() {
-        override fun onNativeAdLoaded(p0: MaxNativeAdView?, p1: MaxAd?) {
-            Log.e("+-+-+-", "onNativeAdLoaded p0: "+p0 )
-            super.onNativeAdLoaded(p0, p1)
+        override fun onNativeAdLoaded(nativeAdView: MaxNativeAdView?, ad: MaxAd?) {
+            super.onNativeAdLoaded(nativeAdView, ad)
+            Log.e("+-+-+-", "onNativeAdLoaded p0: "+nativeAdView )
+            Log.e("+-+-+-", "onNativeAdLoaded --------------- 0 " )
             val layout = LinearLayout(this@requestNativeApplovin)
+            Log.e("+-+-+-", "onNativeAdLoaded --------------- 1 " )
+
             layout.layoutParams =
                 LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT
                 )
+            Log.e("+-+-+-", "onNativeAdLoaded --------------- 2 " )
+
             layout.orientation = LinearLayout.VERTICAL
-            if (loadedNativeAd != null) {
-                nativeAdLoader.destroy(loadedNativeAd)
+
+            Log.e("+-+-+-", "onNativeAdLoaded --------------- 3 " )
+
+
+            if (nativeAd != null) {
+                nativeAdLoader.destroy(nativeAd)
             }
-            loadedNativeAd = p1
-            layout.addView(p0)
+
+            Log.e("+-+-+-", "onNativeAdLoaded --------------- 4 " )
+
+            nativeAd = ad
+
+            Log.e("+-+-+-", "onNativeAdLoaded --------------- 5 " )
+
+            layout.removeAllViews()
+            Log.e("+-+-+-", "onNativeAdLoaded --------------- 6 " )
+
+            layout.addView(nativeAdView)
+
+            Log.e("+-+-+-", "onNativeAdLoaded --------------- 7 " )
+
+
             callBack.invoke(layout, LOADED_AD)
+
+            Log.e("+-+-+-", "onNativeAdLoaded --------------- 8 " )
+
+
         }
 
         override fun onNativeAdLoadFailed(p0: String?, p1: MaxError?) {
