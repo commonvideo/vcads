@@ -47,7 +47,6 @@ dependencies {
     implementation 'com.unity3d.ads:unity-ads:4.6.0'
     implementation 'com.google.ads.mediation:unity:4.7.0.0'
 
-
     //todo IronSource mediation
     implementation 'com.ironsource.sdk:mediationsdk:7.3.0'
     implementation 'com.ironsource.adapters:admobadapter:4.3.34'
@@ -77,7 +76,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.github.commonvideo'
                 artifactId = 'vcads'
-                version = '7'
+                version = 'calls_8'
             }
         }
     }
